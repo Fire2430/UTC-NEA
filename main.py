@@ -1,16 +1,13 @@
 import sqlite3
+import string
+from tkinter import Y
 from wsgiref.validate import InputWrapper
 from userdb import Userdb
 import userdb
+from time import sleep
 auth = False
 admin_auth = False
 adminuser = "admin"
-
-def adminsection():
-    print("What would you like to do?")
-    selection = str(input("Add a new user. user "))
-    
-
 
 conn = sqlite3.connect('users.db')
 
@@ -33,6 +30,29 @@ curs = conn.cursor()
 #curs.execute("SELECT * FROM users WHERE username='Ash'")
 #curs.execute("SELECT * FROM users WHERE username='Fire2430'")
 #print(curs.fetchone())
+
+def adminsection():
+    print("What would you like to do?")
+    selection = str(input("Add A new user (user), Checks Passwords (pass), Change Password (forgotpass)"))
+    if selection == "user":
+        user1 = str(input("What would you like the username to be?"))
+        sleep(0.5)
+        print("What would you like the password to be.")
+        sleep(0.1)
+        pass1 = str(input("Must have atleast 8 Characters, One uppercase and One specail Charater."))
+        temp = pass1.lower()
+        if len(pass1) <= 8:
+            print("The password is too small.")
+            adminsection()
+        elif pass1 == temp:
+            print("Your password does not have any Uppercase characters.")
+            adminsection()
+        elif pass1.isalnum() == True:
+            print("Your password does not have a speaical character.")
+            adminsection()
+        else:
+            curs.execute("INSERT INTO users VALUES(?,?)",(user1, pass1))
+
 adminsec = str(input("Would you like to enter admin mode? Y/N "))
 username1 = input("please input your username. ")
 curs.execute("SELECT * FROM users WHERE username=?", (username1,))
@@ -45,6 +65,7 @@ for row in record:
         record = curs.fetchall()
         if userpass == row[1]:
             print("yes")
+            adminsection()
     elif password == userpass:
         print("Well Done")
         auth = True
