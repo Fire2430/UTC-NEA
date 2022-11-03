@@ -10,7 +10,6 @@ admin_auth = False
 adminuser = "admin"
 
 conn = sqlite3.connect('users.db')
-
 curs = conn.cursor()
 
 #curs.execute("""CREATE TABLE users  (
@@ -52,6 +51,38 @@ def adminsection():
             adminsection()
         else:
             curs.execute("INSERT INTO users VALUES(?,?)",(user1, pass1))
+    elif selection == "pass":
+        print("What is the username of the account you want the password checked?")
+        sleep(0.5)
+        user2 = str(input("Please enter the username. "))
+        curs.execute("SELECT * FROM users WHERE username=?", (user2,))
+        records1 = curs.fetchall()
+        for row in records1:
+            sleep(0.5)
+            print("The password is")
+            sleep(0.2)
+            print(row[1])
+    elif selection == "forgotpass":
+        
+        sleep(0.2)
+        user3 = str(input("Please enter the username of the account you want to change."))
+        curs.execute("SELECT * FROM users WHERE username=?", (user3,))
+        records2 = curs.fetchall()
+        curs.execute("SELECT * FROM users WHERE username=?", (adminuser,))
+        admin = curs.fetchall()
+        for row in records2:
+            sleep(0.2)
+            pass3 = str(input("Please enter your old password or if you dont have it please enter the admin password."))
+            if pass3 == row[1]:
+                newpass = str(input("Please enter your new password."))
+                curs.execute("INSERT INTO users VALUES (?,?)", (user3, newpass))
+        for row in admin:
+            if pass3 == row[1]:
+                newpass = str(input("Please enter your new password."))
+                curs.execute("INSERT INTO users VALUES (?,?)", (user3, newpass))
+    else:
+        print("You made an invalid input.")
+        adminsection()
 
 adminsec = str(input("Would you like to enter admin mode? Y/N "))
 username1 = input("please input your username. ")
