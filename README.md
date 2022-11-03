@@ -1,11 +1,11 @@
 # None Exam Assesmant - October - November 2022
 This is the dice game for the UK NEA for Computer Science.
 
-# Table of Content
+## Table of Content
 Contains Semi-Advanced log-in system - SQLite Intergration W/Database.
 Admin portal: Creating new users, Checking user passwords and Changing user passwords.
 
-# Admin Portal
+## Admin Portal
 ### V1.0
 Database intergration.
 User Log-in system added.
