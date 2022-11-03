@@ -79,6 +79,7 @@ def adminsection():
         for row in admin:
             if pass3 == row[1]:
                 newpass = str(input("Please enter your new password."))
+                curs.execute("DELETE FROM users WHERE username=?", (user3,))
                 curs.execute("INSERT INTO users VALUES (?,?)", (user3, newpass))
     else:
         print("You made an invalid input.")
