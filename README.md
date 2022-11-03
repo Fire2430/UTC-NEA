@@ -3,12 +3,20 @@ This is the dice game for the UK NEA for Computer Science.
 
 # Table of Content
 Contains Semi-Advanced log-in system - SQLite Intergration W/Database.
-Admin portal, For creating new users.
+Admin portal: Creating new users, Checking user passwords and Changing user passwords.
 
 # V1.0
-Database intergration
-User Log-in system added
+Database intergration.
+User Log-in system added.
 
 # V1.1
-Admin portal first steps added
+Admin portal first steps added.
 New user creation added to Admin Portal.
+
+# V1.2
+Admin portal second step added.
+Password check added to Admin Portal.
+# V1.3
+Admin portal Final step added.
+User change password added to Admin Portal.
+Updated Readme.
