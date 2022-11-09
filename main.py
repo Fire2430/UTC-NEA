@@ -5,9 +5,11 @@ from wsgiref.validate import InputWrapper
 from userdb import Userdb
 import userdb
 from time import sleep
+from random import randint, random
 auth = False
 admin_auth = False
 adminuser = "admin"
+roundnum = 0
 
 conn = sqlite3.connect('users.db')
 curs = conn.cursor()
@@ -30,8 +32,90 @@ curs = conn.cursor()
 #curs.execute("SELECT * FROM users WHERE username='Fire2430'")
 # print(curs.fetchone())
 
-def game(player1, player2):
-    print("Hello", player1, "Are you ready to play the game?")
+
+def game(player1, player2, roundnum):
+    player1total = 0
+    player2total = 0
+    print("Hello", player1, "and", player2, "Are you ready to play the game?")
+    sleep(1.7)
+    print("Too late. You don't get a choice.")
+    sleep(1.5)
+    roundnum = roundnum+1
+    print("Round", roundnum)
+    sleep(1.2)
+    player1roll1 = randint(1, 6)
+    player2roll1 = randint(1, 6)
+    print(player1, "rolled a", player1roll1)
+    sleep(1.3)
+    print(player2, "rolled a", player2roll1)
+    sleep(1.3)
+    player1total = player1roll1 + player1total
+    player2total = player2roll1 + player2total
+    roundnum = roundnum+1
+    print("Time to go again!!")
+    sleep(1.1)
+    print("Are you ready for round", roundnum,)
+    sleep(1.2)
+    player1roll2 = randint(1, 6)
+    player2roll2 = randint(1, 6)
+    print(player1, "rolled a", player1roll2)
+    sleep(1.3)
+    print(player2, "rolled a", player2roll2)
+    sleep(1.3)
+    player1total = player1roll2 + player1total
+    player2total = player2roll2 + player2total
+    roundnum = roundnum+1
+    print(player1, "has", player1total, "points")
+    sleep(1.2)
+    print(player2, "has", player2total, "points")
+    print("Time to go again!!")
+    sleep(1.1)
+    print("Are you ready for round", roundnum,)
+    sleep(1.2)
+    player1roll3 = randint(1, 6)
+    player2roll3 = randint(1, 6)
+    print(player1, "rolled a", player1roll3)
+    sleep(1.3)
+    print(player2, "rolled a", player2roll3)
+    sleep(1.3)
+    player1total = player1roll3 + player1total
+    player2total = player2roll3 + player2total
+    roundnum = roundnum+1
+    print(player1, "has", player1total, "points")
+    sleep(1.2)
+    print(player2, "has", player2total, "points")
+    print("Time to go again!!")
+    sleep(1.1)
+    print("Are you ready for round", roundnum,)
+    sleep(1.2)
+    player1roll4 = randint(1, 6)
+    player2roll4 = randint(1, 6)
+    print(player1, "rolled a", player1roll3)
+    sleep(1.3)
+    print(player2, "rolled a", player2roll3)
+    sleep(1.3)
+    player1total = player1roll4 + player1total
+    player2total = player2roll4 + player2total
+    roundnum = roundnum+1
+    print(player1, "has", player1total, "points")
+    sleep(1.2)
+    print(player2, "has", player2total, "points")
+    print("Time to go again!!")
+    sleep(1.1)
+    print("Are you ready for round", roundnum,)
+    sleep(1.2)
+    player1roll5 = randint(1, 6)
+    player2roll5 = randint(1, 6)
+    print(player1, "rolled a", player1roll5)
+    sleep(1.3)
+    print(player2, "rolled a", player2roll5)
+    sleep(1.3)
+    player1total = player1roll5 + player1total
+    player2total = player2roll5 + player2total
+    roundnum = roundnum+1
+    print(player1, "has", player1total, "points")
+    sleep(1.2)
+    print(player2, "has", player2total, "points")
 
 
 def adminsection():
@@ -141,7 +225,7 @@ if auth == True and auth1 == True:
     if scoreboard == "Y":
         print("Not here yet. :(")
     else:
-        game(player1, player2)
+        game(player1, player2, roundnum)
 
 else:
     print("Authentication failed.")
