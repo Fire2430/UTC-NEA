@@ -12,33 +12,39 @@ adminuser = "admin"
 conn = sqlite3.connect('users.db')
 curs = conn.cursor()
 
-#curs.execute("""CREATE TABLE users  (
+# curs.execute("""CREATE TABLE users  (
 #        username text,
 #        password text
 #        )""")
 
-#curs.execute("INSERT INTO users VALUES ('Ash', 'technoxmonty')")
+#curs.execute("INSERT INT1O users VALUES ('Ash', 'technoxmonty')")
 #curs.execute("INSERT INTO users VALUES ('Fire2430', 'Magid')")
 #curs.execute("INSERT INTO users VALUES ('admin', 'admin')")
 
 #usr_1 = Userdb('Hannah', 'Ashton')
 #usr_2 = Userdb('Bently', 'Pinkbentlyclub')
 
-#curs.execute("INSERT INTO users VALUES (?,?)", (usr_2.username, usr_2.password))A
+# curs.execute("INSERT INTO users VALUES (?,?)", (usr_2.username, usr_2.password))A
 
 #curs.execute("SELECT * FROM users WHERE username='Ash'")
 #curs.execute("SELECT * FROM users WHERE username='Fire2430'")
-#print(curs.fetchone())
+# print(curs.fetchone())
+
+def game(player1, player2):
+    print("Hello", player1, "Are you ready to play the game?")
+
 
 def adminsection():
     print("What would you like to do?")
-    selection = str(input("Add A new user (user), Checks Passwords (pass), Change Password (forgotpass)"))
+    selection = str(input(
+        "Add A new user (user), Checks Passwords (pass), Change Password (forgotpass)"))
     if selection == "user":
         user1 = str(input("What would you like the username to be?"))
         sleep(0.5)
         print("What would you like the password to be.")
         sleep(0.1)
-        pass1 = str(input("Must have atleast 8 Characters, One uppercase and One specail Charater."))
+        pass1 = str(
+            input("Must have atleast 8 Characters, One uppercase and One specail Charater."))
         temp = pass1.lower()
         if len(pass1) <= 8:
             print("The password is too small.")
@@ -50,7 +56,7 @@ def adminsection():
             print("Your password does not have a speaical character.")
             adminsection()
         else:
-            curs.execute("INSERT INTO users VALUES(?,?)",(user1, pass1))
+            curs.execute("INSERT INTO users VALUES(?,?)", (user1, pass1))
     elif selection == "pass":
         print("What is the username of the account you want the password checked?")
         sleep(0.5)
@@ -63,27 +69,32 @@ def adminsection():
             sleep(0.2)
             print(row[1])
     elif selection == "forgotpass":
-        
+
         sleep(0.2)
-        user3 = str(input("Please enter the username of the account you want to change."))
+        user3 = str(
+            input("Please enter the username of the account you want to change."))
         curs.execute("SELECT * FROM users WHERE username=?", (user3,))
         records2 = curs.fetchall()
         curs.execute("SELECT * FROM users WHERE username=?", (adminuser,))
         admin = curs.fetchall()
         for row in records2:
             sleep(0.2)
-            pass3 = str(input("Please enter your old password or if you dont have it please enter the admin password."))
+            pass3 = str(input(
+                "Please enter your old password or if you dont have it please enter the admin password."))
             if pass3 == row[1]:
                 newpass = str(input("Please enter your new password."))
-                curs.execute("INSERT INTO users VALUES (?,?)", (user3, newpass))
+                curs.execute("INSERT INTO users VALUES (?,?)",
+                             (user3, newpass))
         for row in admin:
             if pass3 == row[1]:
                 newpass = str(input("Please enter your new password."))
                 curs.execute("DELETE FROM users WHERE username=?", (user3,))
-                curs.execute("INSERT INTO users VALUES (?,?)", (user3, newpass))
+                curs.execute("INSERT INTO users VALUES (?,?)",
+                             (user3, newpass))
     else:
         print("You made an invalid input.")
         adminsection()
+
 
 adminsec = str(input("Would you like to enter admin mode? Y/N "))
 username1 = input("please input your username. ")
@@ -117,8 +128,7 @@ for row in record:
         player2 = row[0]
     else:
         print("Password is incorrect.")
-        
-    
+
 
 conn.commit()
 
@@ -126,4 +136,12 @@ conn.close
 
 if auth == True and auth1 == True:
     print("Auth Passed")
-    print ("The players are", player1, "and", player2)
+    print("The players are", player1, "and", player2)
+    scoreboard = str(input("Would you like to see the score board? (Y/N) "))
+    if scoreboard == "Y":
+        print("Not here yet. :(")
+    else:
+        game(player1, player2)
+
+else:
+    print("Authentication failed.")
