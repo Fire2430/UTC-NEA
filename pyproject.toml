@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "python-template"
-version = "0.1.0"
+name = "Computer Science NEA"
+version = "0.1.1"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Aleks Stuart <aleks.stuart@utcmediacityuk.org.uk>"]
 
 [tool.poetry.dependencies]
 python = ">=3.8.0,<3.9"
