@@ -116,6 +116,28 @@ def game(player1, player2, roundnum):
     print(player1, "has", player1total, "points")
     sleep(1.2)
     print(player2, "has", player2total, "points")
+    curs.execute("SELECT * FROM users WHERE username=?", (player1,))
+    records = curs.fetchall()
+    for row in records:
+        if player1total >= row[2]:
+            print("New high score of", player1total,"Your old high score was", row[2])
+            user = row[0]
+            passs = row[1]
+            curs.execute("DELETE FROM users WHERE username=?", (user,))
+            curs.execute("INSERT INTO users VALUES (?,?,?)", (user, passs, player1total,))
+        else:
+            print("You did not get a new high score")
+    curs.execute("SELECT * FROM users WHERE username=?", (player2,))
+    records = curs.fetchall()
+    for row in records:
+        if player2total >= row[2]:
+            print("New high score of", player2total,"Your old high score was", row[2])
+            user = row[0]
+            passs = row[1]
+            curs.execute("DELETE FROM users WHERE username=?", (user,))
+            curs.execute("INSERT INTO users VALUES (?,?,?)", (user, passs, player2total,))
+        else:
+            print("You did not get a new high score")
 
 
 def adminsection():
